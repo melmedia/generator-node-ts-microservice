@@ -1,4 +1,4 @@
-# generator-node-ts-microservice [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
+# generator-node-ts-microservice
 > NodeJS Typescript backend REST microservice based on routing-controllers, typeorm, inversify
 
 ## Installation
