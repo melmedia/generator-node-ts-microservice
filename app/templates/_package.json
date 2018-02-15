@@ -10,6 +10,7 @@
     "typeorm-config": "<%= environmentScriptPath %> node dist/bin/db-config.js > ormconfig.json",
     "migrate": "yarn run typeorm-config && ./node_modules/.bin/typeorm migrations:run",
     "migrate-undo": "yarn run typeorm-config && ./node_modules/.bin/typeorm migrations:revert",
+    "fixture-<%= entityNameLower %>s": "<%= environmentScriptPath %> node dist/bin/fixture-<%= entityNameLower %>s.js",
     "gulp": "./node_modules/.bin/gulp",
     "apidoc": "yarn run gulp apidoc",
     "lint": "./node_modules/.bin/tslint --project tsconfig.json"

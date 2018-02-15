@@ -13,13 +13,14 @@ module.exports = class extends Generator {
 
     const mapping = [
       ['build.xml'],
-      ['environment/packageName.prod.conf', `environment/${packageName}.prod.conf`],
-      ['environment/packageName.prod.conf', `environment/${packageName}.qa.conf`],
+      ['environment/supervisor/packageName.prod.conf', `environment/supervisor/${packageName}.prod.conf`],
+      ['environment/supervisor/packageName.prod.conf', `environment/supervisor/${packageName}.qa.conf`],
     ];
 
     const params = {
       packageName,
       optFolderName: this.config.get('optFolderName'),
+      shortProjectName: this.config.get('shortProjectName'),
     };
 
     mapping.forEach(([template, destination]) => {

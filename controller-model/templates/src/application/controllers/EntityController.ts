@@ -9,7 +9,6 @@ import {
   Param,
   Patch,
   Post,
-  Put,
   QueryParam,
   Res,
 } from 'routing-controllers';
@@ -22,8 +21,6 @@ import { Create<%= entityName %>Form } from '../forms/Create<%= entityName %>For
 import { <%= entityName %>, Status } from '../../infrastructure/models/<%= entityName %>';
 import { <%= entityName %>View } from '../views/<%= entityName %>View';
 import { Update<%= entityName %>Form } from '../forms/Update<%= entityName %>Form';
-import { SetCoachForm } from '../forms/SetCoachForm';
-import { SetNutritionistForm } from '../forms/SetNutritionistForm';
 import { Type } from '../../Type';
 
 @JsonController('/<%= entityNameLower %>')

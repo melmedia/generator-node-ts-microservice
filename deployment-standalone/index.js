@@ -8,7 +8,7 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    const packageName = this.answers.packageName;
+    const packageName = this.config.get('packageName');
 
     const mapping = [
       ['apidoc.json'],
@@ -17,15 +17,15 @@ module.exports = class extends Generator {
       ['bin/build'],
       ['bin/deploy'],
       ['bin/environment'],
-      ['environment/packageName.prod.conf', `environment/${packageName}.prod.conf`],
-      ['environment/packageName.prod.conf', `environment/${packageName}.qa.conf`],
+      ['environment/supervisor/packageName.prod.conf', `environment/supervisor/${packageName}.prod.conf`],
+      ['environment/supervisor/packageName.prod.conf', `environment/supervisor/${packageName}.qa.conf`],
     ];
 
     const params = {
-      packageName: this.answers.packageName,
-      projectTitle: this.answers.projectTitle,
-      databaseName: this.answers.databaseName,
-      envVariableName: this.answers.envVariableName,
+      packageName,
+      projectTitle: this.config.get('projectTitle'),
+      databaseName: this.config.get('databaseName'),
+      envVariableName: this.config.get('envVariableName'),
       optFolderName: this.config.get('optFolderName'),
     };
 

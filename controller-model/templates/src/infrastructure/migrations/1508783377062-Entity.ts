@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class <%= entityName %>1508783377062 implements MigrationInterface {
+export class <%= entityName %><%= migrationTime %> implements MigrationInterface {
 
   public async up(queryRunner: QueryRunner) {
     await queryRunner.query(`

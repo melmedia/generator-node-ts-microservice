@@ -1,4 +1,5 @@
 'use strict';
+const path = require('path');
 const Generator = require('yeoman-generator');
 const lodash = require('lodash');
 const mkdirp = require('mkdirp');
@@ -62,6 +63,14 @@ module.exports = class extends Generator {
         type: 'input',
         name: 'optFolderName',
         message: 'Name of installation folder in /opt (name of containing project)',
+        default: path.basename(path.resolve(this.sourceRoot(), '..')),
+        store: true,
+      },
+      {
+        when: answers => 'Standalone' !== answers.deploymentType,
+        type: 'input',
+        name: 'shortProjectName',
+        message: 'Name of this project folder in containing package (/opt/.../current/NAME)',
         default: this.appname,
         store: true,
       },
@@ -70,8 +79,12 @@ module.exports = class extends Generator {
     return this.prompt(prompts).then(answers => {
       this.answers = answers;
       this.config.set('packageName', answers.packageName);
+      this.config.set('projectTitle', answers.projectTitle);
+      this.config.set('databaseName', answers.databaseName);
+      this.config.set('envVariableName', answers.envVariableName);
       this.config.set('entityName', answers.entityName);
       this.config.set('optFolderName', answers.optFolderName);
+      this.config.set('shortProjectName', answers.shortProjectName);
 
       this.composeWith(require.resolve(
         'Standalone' === answers.deploymentType ?
@@ -125,6 +138,7 @@ module.exports = class extends Generator {
       envVariableName: this.answers.envVariableName,
       environmentScriptPath: 'Standalone' === this.answers.deploymentType ? 'bin/environment' : '../bin/environment',
       entityName: this.config.get('entityName'),
+      entityNameLower: this.config.get('entityName').toLowerCase(),
       randomPassword: randomstring.generate(10),
     };
 
