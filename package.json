@@ -2,8 +2,10 @@
   "name": "generator-node-ts-microservice",
   "version": "0.0.1",
   "description": "NodeJS Typescript backend REST microservice based on routing-controllers, typeorm, inversify",
+  "main": "app/index.js",
   "files": [
-    "app"
+    "app",
+    "controller-model"
   ],
   "devDependencies": {
     "yeoman-assert": "^3.1.0"
