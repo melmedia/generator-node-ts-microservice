@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<project name="<%= packageName %>" basedir=".">
+
+    <!-- Properties -->
+
+    <property name="packaging.project" value="<%= packageName %>"/>
+
+    <property name="params.env" value="dev"/>
+
+    <property name="project.node-modules.path" value="${basedir}/node_modules"/>
+
+    <property name="<%= packageName %>.runtime-path" value="${basedir}/runtime"/>
+
+    <!-- Dependencies -->
+
+    <import file="${project.node-modules.path}/deployment/packaging.xml"/>
+
+
+    <!-- Deployment -->
+
+    <target name="packaging.release.switch"
+            depends="packaging.shared-folders,
+                packaging.supervisor.link,
+                node.migrate,
+                packaging.release.folder.link,
+                packaging.rollback-script,
+                packaging.supervisor.restart-service"/>
+
+    <target name="packaging.shared-folders.create.logs" depends="packaging.main-app.create-shared-folders.logs"/>
+    <target name="packaging.shared-folders" depends="packaging.shared-folders.create, packaging.shared-folders.set-permissions"/>
+
+</project>

@@ -1,13 +1,13 @@
 {
-  "name": "node-microservice-boilerplate",
+  "name": "<%= packageName %>",
   "version": "1.0.0",
   "license": "UNLICENSED",
   "scripts": {
     "compile": "./node_modules/.bin/tsc",
     "compile-dev": "./node_modules/.bin/tsc --watch",
-    "start": "bin/environment node dist/app.js",
-    "start-dev": "bin/environment node_modules/.bin/nodemon dist/app.js",
-    "typeorm-config": "bin/environment node dist/bin/db-config.js > ormconfig.json",
+    "start": "<%= environmentScriptPath %> node dist/app.js",
+    "start-dev": "<%= environmentScriptPath %> node_modules/.bin/nodemon dist/app.js",
+    "typeorm-config": "<%= environmentScriptPath %> node dist/bin/db-config.js > ormconfig.json",
     "migrate": "yarn run typeorm-config && ./node_modules/.bin/typeorm migrations:run",
     "migrate-undo": "yarn run typeorm-config && ./node_modules/.bin/typeorm migrations:revert",
     "gulp": "./node_modules/.bin/gulp",
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@c7s/config": "git+ssh://git@github.com/c7s/config.git#dev",
-    "@c7s/node-framework": "git+ssh://git@github.com/c7s/node-framework.git#dev",
+    "@c7s/node-ts-framework": "git+ssh://git@github.com/c7s/node-ts-framework.git#dev",
     "@c7s/rest-client": "git+ssh://git@github.com/c7s/rest-client.git#dev",
     "axios": "0.17.1",
     "class-transformer": "0.1.9",

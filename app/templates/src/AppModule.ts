@@ -2,7 +2,7 @@ import * as path from 'path';
 import { Connection, getRepository, Repository } from 'typeorm';
 import { Container } from 'inversify';
 import { Logger } from 'log4js';
-import { Module, components } from '@c7s/node-framework';
+import { Module, components } from '@c7s/node-ts-framework';
 import {
   ServerConfig,
   ConfigFactory,
@@ -10,7 +10,7 @@ import {
   DbConfig,
   ConfigFileChain,
 } from '@c7s/config';
-import { Client } from './infrastructure/models/Client';
+import { <%= entityName %> } from './infrastructure/models/<%= entityName %>';
 import { Type } from './Type';
 
 /**
@@ -22,7 +22,7 @@ export class AppModule extends Module {
   public async initDiContainer(container: Container) {
     const configSource = new ConfigFileChain(
       path.resolve(__dirname, '../config'),
-      process.env.REPLACE_ME_ENV as string,
+      process.env.<%= envVariableName %> as string,
     );
     const configFactory = new ConfigFactory(configSource);
 
@@ -42,8 +42,8 @@ export class AppModule extends Module {
     container.bind<Connection>(Type.DbConnection)
       .toConstantValue(await (new components.DbConnectionFactory).create([this]));
 
-    container.bind<Repository<Client>>(Type.ClientDataRepository)
-      .toConstantValue(getRepository(Client));
+    container.bind<Repository<<%= entityName %>>>(Type.<%= entityName %>DataRepository)
+      .toConstantValue(getRepository(<%= entityName %>));
   }
 
   protected get baseDirectory() {

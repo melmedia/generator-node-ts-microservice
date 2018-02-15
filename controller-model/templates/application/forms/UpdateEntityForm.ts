@@ -2,7 +2,7 @@ import { Exclude, Expose, Type } from 'class-transformer';
 import { IsDate, IsEmail, IsIn, IsOptional } from 'class-validator';
 
 @Exclude()
-export class UpdateClientForm {
+export class Update<%= entityName %>Form {
   @Expose()
   public firstName?: string;
 

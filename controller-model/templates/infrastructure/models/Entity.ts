@@ -11,7 +11,7 @@ export enum Status {
 
 
 @Entity()
-export class Client {
+export class <%= entityName %> {
   @PrimaryColumn()
   public id!: number;
 

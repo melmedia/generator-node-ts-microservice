@@ -1,12 +1,12 @@
 import * as lodash from 'lodash';
-import { Client } from '../../infrastructure/models/Client';
+import { <%= entityName %> } from '../../infrastructure/models/<%= entityName %>';
 
-export class ClientView {
+export class <%= entityName %>View {
 
-  public index(clients: Client[]) {
-    return clients.map((client) => {
+  public index(<%= entityNameLower %>s: <%= entityName %>[]) {
+    return <%= entityNameLower %>s.map((<%= entityNameLower %>) => {
       return lodash.pick(
-        client,
+        <%= entityNameLower %>,
         [
           'id',
           'coachId',
@@ -18,9 +18,9 @@ export class ClientView {
     });
   }
 
-  public one(client: Client) {
+  public one(<%= entityNameLower %>: <%= entityName %>) {
     return lodash.pick(
-      client,
+      <%= entityNameLower %>,
       [
         'id',
         'coachId',

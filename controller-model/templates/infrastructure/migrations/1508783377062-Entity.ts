@@ -1,10 +1,10 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class Client1508783377062 implements MigrationInterface {
+export class <%= entityName %>1508783377062 implements MigrationInterface {
 
   public async up(queryRunner: QueryRunner) {
     await queryRunner.query(`
-            create table client (
+            create table <%= entityNameLower %> (
                 id serial primary key,
                 email varchar not null,
                 "firstName" varchar not null,
@@ -19,7 +19,7 @@ export class Client1508783377062 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner) {
-    await queryRunner.query(`drop table client`);
+    await queryRunner.query(`drop table <%= entityNameLower %>`);
   }
 
 }

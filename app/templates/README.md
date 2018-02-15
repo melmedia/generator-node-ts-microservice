@@ -1,4 +1,4 @@
-# Replace Me
+# <%= projectTitle %>
 
 ## Requirements
 
@@ -19,12 +19,12 @@ APIDOC generated documentation available at ./apidoc folder.
 Create database:
 ```sh
 psql -c "create user gorod with password '123qwe'" postgres
-psql -c "create database replace_me owner gorod encoding 'UTF8' lc_collate 'ru_RU.UTF-8' LC_CTYPE 'ru_RU.UTF-8' template template0;" postgres
+psql -c "create database <%= databaseName %> owner gorod encoding 'UTF8' lc_collate 'ru_RU.UTF-8' LC_CTYPE 'ru_RU.UTF-8' template template0;" postgres
 ```
 
 Place in /opt/environment.sh:
 ```sh
-export REPLACE_ME_ENV=dev
+export <%= envVariableName %>=dev
 ```
 
 Install dependencies:
@@ -40,7 +40,7 @@ yarn run compile
 
 Run migrations:
 ```sh
-chmod +x bin/environment
+chmod +x <%= environmentScriptPath %>
 yarn run migrate
 mkdir runtime/
 ```
@@ -74,12 +74,12 @@ See logs in `runtime` folder.
 Create database:
 ```sh
 psql -c "create user gorod with password '123qwe'" postgres
-psql -c "create database replace_me owner gorod encoding 'UTF8' lc_collate 'ru_RU.UTF-8' LC_CTYPE 'ru_RU.UTF-8' template template0;" postgres
+psql -c "create database <%= databaseName %> owner gorod encoding 'UTF8' lc_collate 'ru_RU.UTF-8' LC_CTYPE 'ru_RU.UTF-8' template template0;" postgres
 ```
 
 Place in /opt/environment.sh:
 ```sh
-export REPLACE_ME_ENV=dev
+export <%= envVariableName %>=dev
 ```
 
 ### After jenkins deployment

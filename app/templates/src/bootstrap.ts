@@ -13,6 +13,6 @@ import * as hardRejection from 'hard-rejection';
 
 hardRejection();
 
-if (!process.env.REPLACE_ME_ENV) {
-  throw new Error('Environment variable REPLACE_ME_ENV is not set');
+if (!process.env.<%= envVariableName %>) {
+  throw new Error('Environment variable <%= envVariableName %> is not set');
 }

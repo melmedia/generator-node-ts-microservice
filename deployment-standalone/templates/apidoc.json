@@ -1,0 +1,6 @@
+{
+  "name": "<%= packageName %>",
+  "title": "<%= projectTitle %>",
+  "description": "<%= projectTitle %>",
+  "template": {"forceLanguage": "en"}
+}
