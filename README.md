@@ -1,5 +1,8 @@
 # Yeoman generator node-ts-microservice
-> NodeJS Typescript backend REST microservice based on routing-controllers, typeorm, inversify
+NodeJS Typescript backend REST microservice based on routing-controllers, typeorm, inversify.
+
+Based on [boilerplate](https://github.com/c7s/node-ts-microservice-boilerplate).
+
 
 ## Installation
 
