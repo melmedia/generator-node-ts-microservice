@@ -4,7 +4,7 @@ import { argv } from 'yargs';
 import { Repository } from 'typeorm';
 import { di } from '@c7s/node-ts-framework';
 import { Type } from '../Type';
-import { Client, Status } from '../infrastructure/models/Client';
+import { <%= entityName %>, Status } from '../infrastructure/models/<%= entityName %>';
 import { app } from '../console';
 
 class Fixture<%= entityName %>s {
