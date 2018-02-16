@@ -134,6 +134,7 @@ module.exports = class extends Generator {
       'src/application/controllers',
       'src/application/forms',
       'src/application/views',
+      'src/components',
       'src/infrastructure/migrations',
       'src/infrastructure/models',
     ];
