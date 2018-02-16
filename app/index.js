@@ -39,6 +39,13 @@ module.exports = class extends Generator {
       },
       {
         type: 'input',
+        name: 'serverListenPort',
+        message: 'Server listen port',
+        default: 3000,
+        store: true,
+      },
+      {
+        type: 'input',
         name: 'envVariableName',
         message: 'Environment variable to get current environment from (as in /opt/environment.sh)',
         default: lodash.snakeCase(this.appname).toUpperCase() + '_ENV',
@@ -140,6 +147,7 @@ module.exports = class extends Generator {
       entityName: this.config.get('entityName'),
       entityNameLower: this.config.get('entityName').toLowerCase(),
       randomPassword: randomstring.generate(10),
+      serverListenPort: this.answers.serverListenPort,
     };
 
     copyTemplatesMapping.forEach(([template, destination]) => {
