@@ -11,9 +11,8 @@
     "migrate": "yarn run typeorm-config && ./node_modules/.bin/typeorm migrations:run",
     "migrate-undo": "yarn run typeorm-config && ./node_modules/.bin/typeorm migrations:revert",
     "fixture-<%= entityNameLower %>s": "<%= environmentScriptPath %> node dist/bin/fixture-<%= entityNameLower %>s.js",
-    "gulp": "./node_modules/.bin/gulp",
-    "apidoc": "yarn run gulp apidoc",
-    "lint": "./node_modules/.bin/tslint --project tsconfig.json"
+    "apidoc": "./node_modules/.bin/apidoc -i src/application/controllers -o apidoc",
+    "tslint": "./node_modules/.bin/tslint 'src/**/*.ts'"
   },
   "dependencies": {
     "@c7s/config": "git+ssh://git@github.com/c7s/config.git#dev",
@@ -40,9 +39,6 @@
     "@types/lodash": "4.14.102",
     "@types/node": "8.0.46",
     "@types/yargs": "10.0.1",
-    "gulp": "3.9.1",
-    "gulp-apidoc": "0.2.6",
-    "gulp-tslint": "8.1.2",
     "nodemon": "1.14.12",
     "tslint": "5.9.1",
     "tslint-config-airbnb": "5.6.0",
