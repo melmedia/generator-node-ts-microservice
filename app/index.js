@@ -126,7 +126,6 @@ module.exports = class extends Generator {
       ['src/bootstrap.ts'],
       ['src/console.ts'],
       ['src/Type.ts'],
-      ['src/vendor.d.ts'],
       ['src/bin/db-config.ts'],
     ];
 
@@ -149,6 +148,7 @@ module.exports = class extends Generator {
       entityNameLower: this.config.get('entityName').toLowerCase(),
       randomPassword: randomstring.generate(10),
       serverListenPort: this.answers.serverListenPort,
+      shortProjectName: this.answers.shortProjectName,
     };
 
     copyTemplatesMapping.forEach(([template, destination]) => {
