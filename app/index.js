@@ -106,7 +106,6 @@ module.exports = class extends Generator {
       ['_.gitignore', '.gitignore'],
       ['_package.json', 'package.json'],
       ['_tslint.json', 'tslint.json'],
-      ['gulpfile.js'],
       ['README.md'],
       ['tsconfig.json'],
       ['config/base/db.json'],
