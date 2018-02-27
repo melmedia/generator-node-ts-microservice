@@ -4,18 +4,18 @@ export class <%= entityName %><%= migrationTime %> implements MigrationInterface
 
   public async up(queryRunner: QueryRunner) {
     await queryRunner.query(`
-            create table <%= entityNameLower %> (
-                id serial primary key,
-                email varchar not null,
-                "firstName" varchar not null,
-                "lastName" varchar not null,
-                "coachId" integer,
-                "nutritionistId" integer,
-                status varchar not null,
-                "creationTime" timestamptz not null,
-                "updateTime" timestamptz not null
-            )
-        `);
+      create table <%= entityNameLower %> (
+        id serial primary key,
+        email varchar not null,
+        "firstName" varchar not null,
+        "lastName" varchar not null,
+        "coachId" integer,
+        "nutritionistId" integer,
+        status varchar not null,
+        "creationTime" timestamptz not null,
+        "updateTime" timestamptz not null
+      )
+    `);
   }
 
   public async down(queryRunner: QueryRunner) {
