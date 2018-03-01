@@ -148,6 +148,7 @@ module.exports = class extends Generator {
       randomPassword: randomstring.generate(10),
       serverListenPort: this.answers.serverListenPort,
       shortProjectName: this.answers.shortProjectName,
+      deploymentType: this.answers.deploymentType,
     };
 
     copyTemplatesMapping.forEach(([template, destination]) => {
