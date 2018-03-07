@@ -20,7 +20,7 @@
     "@c7s/rest-client": "git+ssh://git@github.com/c7s/rest-client.git#dev",
     "axios": "0.18.0",
     "class-transformer": "0.1.9",
-    "class-validator": "0.7.3",
+    "class-validator": "0.8.1",
     "deployment": "git+ssh://git@github.com/c7s/deployment.git#dev",
     "express": "4.16.2",
     "inversify": "4.11.1",
@@ -31,7 +31,7 @@
     "routing-controllers": "0.7.7",
     "source-map-support": "0.5.3",
     "tsconfig-paths": "3.1.1",
-    "typeorm": "0.1.15",
+    "typeorm": "0.1.16",
     "yargs": "11.0.0"
   },
   "devDependencies": {
@@ -40,7 +40,7 @@
     "@types/node": "8.0.46",
     "@types/yargs": "11.0.0",
 <% if ('Standalone' == deploymentType) { %>"apidoc": "0.17.6",<% } %>
-    "nodemon": "1.14.12",
+     "nodemon": "1.17.1",
     "tslint": "5.9.1",
     "tslint-config-airbnb": "5.7.0",
     "typescript": "2.7.2"
