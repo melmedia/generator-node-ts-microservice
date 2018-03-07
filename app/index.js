@@ -116,6 +116,7 @@ module.exports = class extends Generator {
       ['config/dev/log.json'],
       ['config/dev/server.json'],
       ['config/prod/db.json'],
+      ['config/prod/log.json'],
       ['config/prod/server.json'],
       ['config/qa/db.json'],
       ['config/qa/server.json'],

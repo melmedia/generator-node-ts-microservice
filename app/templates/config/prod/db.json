@@ -1,4 +1,3 @@
 {
-  "password": "<%= randomPassword %>",
-  "logging": "error"
+  "password": "<%= randomPassword %>"
 }
