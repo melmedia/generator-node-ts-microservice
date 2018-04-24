@@ -19,7 +19,7 @@ import { Type } from './Type';
  */
 export class AppModule extends Module {
 
-  public async initDiContainer(container: Container) {
+  public async initDiContainer(container: Container, allApplicationModules: Module[]) {
     const configSource = new ConfigFileChain(
       path.resolve(__dirname, '../config'),
       process.env.<%= envVariableName %> as string,
@@ -42,7 +42,7 @@ export class AppModule extends Module {
       .toConstantValue(loggerFactory.create('access'));
 
     container.bind<Connection>(Type.DbConnection)
-      .toConstantValue(await (new components.DbConnectionFactory).create([this]));
+      .toConstantValue(await (new components.DbConnectionFactory).create(allApplicationModules));
 
     container.bind<Repository<<%= entityName %>>>(Type.<%= entityName %>DataRepository)
       .toConstantValue(getRepository(<%= entityName %>));

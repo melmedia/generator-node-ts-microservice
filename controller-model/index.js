@@ -15,6 +15,7 @@ module.exports = class extends Generator {
 
     const copyTemplatesMapping = [
       ['src/bin/fixture-entities.ts', `src/bin/fixture-${entityNameLower}s.ts`],
+      ['src/components/validation/ErrorMessages.ts', `src/components/validation/ErrorMessages.ts`],
       ['src/application/controllers/EntityController.ts', `src/application/controllers/${entityName}Controller.ts`],
       ['src/application/forms/CreateEntityForm.ts', `src/application/forms/Create${entityName}Form.ts`],
       ['src/application/forms/UpdateEntityForm.ts', `src/application/forms/Update${entityName}Form.ts`],

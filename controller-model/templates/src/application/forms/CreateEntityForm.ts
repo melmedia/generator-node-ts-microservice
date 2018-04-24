@@ -1,4 +1,5 @@
 import { Exclude, Expose } from 'class-transformer';
+import { ErrorMessages } from '../../components/validation/ErrorMessages';
 
 import {
   IsInt,
@@ -10,25 +11,25 @@ import {
 @Exclude()
 export class Create<%= entityName %>Form {
   @Expose()
-  @IsNotEmpty()
+  @IsNotEmpty({ message: ErrorMessages.isNotEmpty() })
   public firstName!: string;
 
   @Expose()
-  @IsNotEmpty()
+  @IsNotEmpty({ message: ErrorMessages.isNotEmpty() })
   public lastName!: string;
 
   @Expose()
-  @IsEmail()
-  @IsNotEmpty()
+  @IsEmail({}, { message: ErrorMessages.isEmail() })
+  @IsNotEmpty({ message: ErrorMessages.isNotEmpty() })
   public email!: string;
 
   @Expose()
-  @IsInt()
+  @IsInt({ message: ErrorMessages.isInt() })
   @IsOptional()
   public coachId?: number;
 
   @Expose()
-  @IsInt()
+  @IsInt({ message: ErrorMessages.isInt() })
   @IsOptional()
   public nutritionistId?: number;
 

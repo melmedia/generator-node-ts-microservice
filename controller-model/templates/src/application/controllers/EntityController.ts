@@ -15,10 +15,10 @@ import {
 import { plainToClass, plainToClassFromExist } from 'class-transformer';
 import { Response } from 'express';
 import { Repository } from 'typeorm';
-import { di } from '@c7s/node-ts-framework';
+import { di, rejectNanParam } from '@c7s/node-ts-framework';
 import { queryIdArray } from '@c7s/rest-client';
 import { Create<%= entityName %>Form } from '../forms/Create<%= entityName %>Form';
-import { <%= entityName %>, Status } from '../../infrastructure/models/<%= entityName %>';
+import { <%= entityName %>, <%= entityName %>Status } from '../../infrastructure/models/<%= entityName %>';
 import { <%= entityName %>View } from '../views/<%= entityName %>View';
 import { Update<%= entityName %>Form } from '../forms/Update<%= entityName %>Form';
 import { Type } from '../../Type';
@@ -61,7 +61,7 @@ export class <%= entityName %>Controller {
   ) {
     let <%= entityNameLower %> = plainToClass(<%= entityName %>, <%= entityNameLower %>Form);
     <%= entityNameLower %>.creationTime = <%= entityNameLower %>.updateTime = new Date;
-    <%= entityNameLower %>.status = Status.AutoCoaching;
+    <%= entityNameLower %>.status = <%= entityName %>Status.AutoCoaching;
     <%= entityNameLower %> = await this.<%= entityNameLower %>DataRepository.save(<%= entityNameLower %>);
 
     response.location(`/<%= entityNameLower %>/${<%= entityNameLower %>.id}`);
@@ -98,6 +98,7 @@ export class <%= entityName %>Controller {
     @Param('id') id: number,
     @BodyParam('<%= entityNameLower %>', { required: true }) <%= entityNameLower %>Form: Update<%= entityName %>Form,
   ) {
+    rejectNanParam('id', id);
     let <%= entityNameLower %> = await this.<%= entityNameLower %>DataRepository.findOne(id);
 
     if (!<%= entityNameLower %>) {
@@ -156,16 +157,16 @@ export class <%= entityName %>Controller {
     if (statusPreset) {
       const statusFilterMap = {
         assessment: [
-          Status.Survey,
-          Status.PreEating,
-          Status.Eating,
-          Status.PreCoaching,
+          <%= entityName %>Status.Survey,
+          <%= entityName %>Status.PreEating,
+          <%= entityName %>Status.Eating,
+          <%= entityName %>Status.PreCoaching,
         ],
         coaching: [
-          Status.Coaching,
+          <%= entityName %>Status.Coaching,
         ],
         autoCoaching: [
-          Status.AutoCoaching,
+          <%= entityName %>Status.AutoCoaching,
         ],
       };
 
@@ -237,6 +238,7 @@ export class <%= entityName %>Controller {
   /* tslint:enable:max-line-length */
   @Get('/:id')
   public async get(@Param('id') id: number) {
+    rejectNanParam('id', id);
     const <%= entityNameLower %> = await this.<%= entityNameLower %>DataRepository.findOne(id);
     if (!<%= entityNameLower %>) {
       throw new NotFoundError('No such <%= entityNameLower %>');
