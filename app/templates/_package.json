@@ -40,7 +40,7 @@
     "@types/node": "8.0.46",
     "@types/yargs": "11.0.0",
 <% if ('Standalone' == deploymentType) { %>"apidoc": "0.17.6",<% } %>
-     "nodemon": "1.17.3",
+    "nodemon": "1.17.3",
     "tslint": "5.9.1",
     "tslint-config-airbnb": "5.8.0",
     "typescript": "2.8.3"
