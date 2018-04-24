@@ -31,7 +31,7 @@
     "routing-controllers": "0.7.7",
     "source-map-support": "0.5.4",
     "tsconfig-paths": "3.3.1",
-    "typeorm": "0.1.16",
+    "typeorm": "0.2.1",
     "yargs": "11.0.0"
   },
   "devDependencies": {
