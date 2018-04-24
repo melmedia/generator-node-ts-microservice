@@ -98,7 +98,7 @@ export class <%= entityName %>Controller {
     @Param('id') id: number,
     @BodyParam('<%= entityNameLower %>', { required: true }) <%= entityNameLower %>Form: Update<%= entityName %>Form,
   ) {
-    let <%= entityNameLower %> = await this.<%= entityNameLower %>DataRepository.findOneById(id);
+    let <%= entityNameLower %> = await this.<%= entityNameLower %>DataRepository.findOne(id);
 
     if (!<%= entityNameLower %>) {
       throw new NotFoundError('No such <%= entityNameLower %>');
@@ -237,7 +237,7 @@ export class <%= entityName %>Controller {
   /* tslint:enable:max-line-length */
   @Get('/:id')
   public async get(@Param('id') id: number) {
-    const <%= entityNameLower %> = await this.<%= entityNameLower %>DataRepository.findOneById(id);
+    const <%= entityNameLower %> = await this.<%= entityNameLower %>DataRepository.findOne(id);
     if (!<%= entityNameLower %>) {
       throw new NotFoundError('No such <%= entityNameLower %>');
     }

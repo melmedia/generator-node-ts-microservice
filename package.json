@@ -10,13 +10,13 @@
     "deployment-microservice"
   ],
   "devDependencies": {
-    "yeoman-assert": "3.1.0"
+    "yeoman-assert": "3.1.1"
   },
   "dependencies": {
     "lodash": "4.17.5",
     "mkdirp": "0.5.1",
     "randomstring": "1.1.5",
-    "yeoman-generator": "2.0.2"
+    "yeoman-generator": "2.0.4"
   },
   "repository": "c7s/generator-node-ts-microservice",
   "license": "UNLICENSED"
