@@ -4,7 +4,7 @@ import { argv } from 'yargs';
 import { Repository } from 'typeorm';
 import { di } from '@c7s/node-ts-framework';
 import { Type } from '../Type';
-import { <%= entityName %>, Status } from '../infrastructure/models/<%= entityName %>';
+import { <%= entityName %>, <%= entityName %>Status } from '../infrastructure/models/<%= entityName %>';
 import { app } from '../console';
 
 class Fixture<%= entityName %>s {
@@ -14,7 +14,7 @@ class Fixture<%= entityName %>s {
   public async create<%= entityName %>(nutritionistId: number) {
     const <%= entityNameLower %> = new <%= entityName %>;
     <%= entityNameLower %>.nutritionistId = nutritionistId;
-    <%= entityNameLower %>.status = Status.Eating;
+    <%= entityNameLower %>.status = <%= entityName %>Status.Eating;
     await this.<%= entityNameLower %>DataRepository.save(<%= entityNameLower %>);
 
     console.log('<%= entityName %> created');

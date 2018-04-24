@@ -31,7 +31,7 @@ export class <%= entityName %> {
   public nutritionistId?: number;
 
   @Column()
-  public status!: Status;
+  public status!: <%= entityName %>Status;
 
   @Column()
   public creationTime!: Date;
