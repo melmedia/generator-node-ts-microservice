@@ -12,6 +12,7 @@ module.exports = class extends Generator {
     const migrationTime = Date.now();
     const entityName = this.config.get('entityName');
     const entityNameLower = entityName.toLowerCase();
+    const serverListenPort = this.config.get('serverListenPort');
 
     const copyTemplatesMapping = [
       ['src/bin/fixture-entities.ts', `src/bin/fixture-${entityNameLower}s.ts`],
@@ -30,6 +31,7 @@ module.exports = class extends Generator {
       migrationTime,
       entityName,
       entityNameLower,
+      serverListenPort,
     };
 
     copyTemplatesMapping.forEach(([template, destination]) => {
