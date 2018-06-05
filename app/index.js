@@ -92,6 +92,7 @@ module.exports = class extends Generator {
       this.config.set('entityName', answers.entityName);
       this.config.set('optFolderName', answers.optFolderName);
       this.config.set('shortProjectName', answers.shortProjectName);
+      this.config.set('serverListenPort', answers.serverListenPort);
 
       this.composeWith(require.resolve(
         'Standalone' === answers.deploymentType ?

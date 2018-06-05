@@ -48,7 +48,7 @@ export class <%= entityName %>Controller {
    * @apiError (400) {String} code BadRequest
    *
    * @apiExample {curl} Example:
-   *   curl -v -X POST -H "Content-Type: application/json" --data-binary '{"<%= entityNameLower %>":{"firstName":"Ivan","lastName":"Ivanov","email":"test@example.com"}}' http://127.0.0.1:3000/<%= entityNameLower %>
+   *   curl -v -X POST -H "Content-Type: application/json" --data-binary '{"<%= entityNameLower %>":{"firstName":"Ivan","lastName":"Ivanov","email":"test@example.com"}}' http://127.0.0.1:<%= serverListenPort %>/<%= entityNameLower %>
    */
 
   /* tslint:enable:max-line-length */
@@ -87,7 +87,7 @@ export class <%= entityName %>Controller {
    * @apiError (404) {String} code NotFound
    *
    * @apiExample {curl} Example:
-   *   curl -v -X PATCH -H "Content-Type: application/json" --data-binary '{"<%= entityNameLower %>":{"firstName":"Ivan","lastName":"Petrov","email":"test@example.com"}}' http://127.0.0.1:3000/<%= entityNameLower %>/1
+   *   curl -v -X PATCH -H "Content-Type: application/json" --data-binary '{"<%= entityNameLower %>":{"firstName":"Ivan","lastName":"Petrov","email":"test@example.com"}}' http://127.0.0.1:<%= serverListenPort %>/<%= entityNameLower %>/1
    */
 
   /* tslint:enable:max-line-length */
@@ -138,7 +138,7 @@ export class <%= entityName %>Controller {
    * @apiError (400) {String} code BadRequest
    *
    * @apiExample {curl} Example:
-   *   curl -v http://127.0.0.1:3000/<%= entityNameLower %>
+   *   curl -v http://127.0.0.1:<%= serverListenPort %>/<%= entityNameLower %>
    */
 
   /* tslint:enable:max-line-length */
@@ -231,7 +231,7 @@ export class <%= entityName %>Controller {
    * @apiError (404) {String} code NotFound
    *
    * @apiExample {curl} Example:
-   *   curl -v http://127.0.0.1:3000/<%= entityNameLower %>/1
+   *   curl -v http://127.0.0.1:<%= serverListenPort %>/<%= entityNameLower %>/1
    */
 
   /* tslint:enable:max-line-length */
