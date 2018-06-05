@@ -18,7 +18,7 @@ module.exports = class extends Generator {
       ['bin/deploy'],
       ['bin/environment'],
       ['environment/supervisor/packageName.prod.conf', `environment/supervisor/${packageName}.prod.conf`],
-      ['environment/supervisor/packageName.prod.conf', `environment/supervisor/${packageName}.qa.conf`],
+      ['environment/supervisor/packageName.qa.conf', `environment/supervisor/${packageName}.qa.conf`],
     ];
 
     const params = {

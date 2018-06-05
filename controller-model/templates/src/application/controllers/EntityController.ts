@@ -17,16 +17,15 @@ import { Response } from 'express';
 import { Repository } from 'typeorm';
 import { di, rejectNanParam } from '@c7s/node-ts-framework';
 import { queryIdArray } from '@c7s/rest-client';
-import { Create<%= entityName %>Form } from '../forms/Create<%= entityName %>Form';
-import { <%= entityName %>, <%= entityName %>Status } from '../../infrastructure/models/<%= entityName %>';
+import * as forms from '../forms';
+import * as models from '../../infrastructure/models';
 import { <%= entityName %>View } from '../views/<%= entityName %>View';
-import { Update<%= entityName %>Form } from '../forms/Update<%= entityName %>Form';
 import { Type } from '../../Type';
 
 @JsonController('/<%= entityNameLower %>')
 export class <%= entityName %>Controller {
   @di.inject(Type.<%= entityName %>DataRepository)
-  protected <%= entityNameLower %>DataRepository!: Repository<<%= entityName %>>;
+  protected <%= entityNameLower %>DataRepository!: Repository<models.<%= entityName %>>;
 
   /* tslint:disable:max-line-length */
   /**
@@ -56,13 +55,13 @@ export class <%= entityName %>Controller {
   @Post('/')
   @HttpCode(201)
   public async create(
-    @BodyParam('<%= entityNameLower %>', { required: true }) <%= entityNameLower %>Form: Create<%= entityName %>Form,
+    @BodyParam('<%= entityNameLower %>', { required: true }) <%= entityNameLower %>Form: forms.Create<%= entityName %>,
     @Res() response: Response,
   ) {
-    let <%= entityNameLower %> = plainToClass(<%= entityName %>, <%= entityNameLower %>Form);
+    const <%= entityNameLower %> = plainToClass(models.<%= entityName %>, <%= entityNameLower %>Form);
     <%= entityNameLower %>.creationTime = <%= entityNameLower %>.updateTime = new Date;
-    <%= entityNameLower %>.status = <%= entityName %>Status.AutoCoaching;
-    <%= entityNameLower %> = await this.<%= entityNameLower %>DataRepository.save(<%= entityNameLower %>);
+    <%= entityNameLower %>.status = models.<%= entityName %>Status.AutoCoaching;
+    await this.<%= entityNameLower %>DataRepository.save(<%= entityNameLower %>);
 
     response.location(`/<%= entityNameLower %>/${<%= entityNameLower %>.id}`);
     return { <%= entityNameLower %>: (new <%= entityName %>View).one(<%= entityNameLower %>) };
@@ -96,7 +95,7 @@ export class <%= entityName %>Controller {
   @OnUndefined(204)
   public async update(
     @Param('id') id: number,
-    @BodyParam('<%= entityNameLower %>', { required: true }) <%= entityNameLower %>Form: Update<%= entityName %>Form,
+    @BodyParam('<%= entityNameLower %>', { required: true }) <%= entityNameLower %>Form: forms.Update<%= entityName %>,
   ) {
     rejectNanParam('id', id);
     let <%= entityNameLower %> = await this.<%= entityNameLower %>DataRepository.findOne(id);
@@ -157,16 +156,16 @@ export class <%= entityName %>Controller {
     if (statusPreset) {
       const statusFilterMap = {
         assessment: [
-          <%= entityName %>Status.Survey,
-          <%= entityName %>Status.PreEating,
-          <%= entityName %>Status.Eating,
-          <%= entityName %>Status.PreCoaching,
+          models.<%= entityName %>Status.Survey,
+          models.<%= entityName %>Status.PreEating,
+          models.<%= entityName %>Status.Eating,
+          models.<%= entityName %>Status.PreCoaching,
         ],
         coaching: [
-          <%= entityName %>Status.Coaching,
+          models.<%= entityName %>Status.Coaching,
         ],
         autoCoaching: [
-          <%= entityName %>Status.AutoCoaching,
+          models.<%= entityName %>Status.AutoCoaching,
         ],
       };
 
@@ -243,7 +242,7 @@ export class <%= entityName %>Controller {
     if (!<%= entityNameLower %>) {
       throw new NotFoundError('No such <%= entityNameLower %>');
     }
-    return { <%= entityNameLower %>: (new <%= entityName %>View).one(<%= entityNameLower %> as <%= entityName %>) };
+    return { <%= entityNameLower %>: (new <%= entityName %>View).one(<%= entityNameLower %> as models.<%= entityName %>) };
   }
 
 }

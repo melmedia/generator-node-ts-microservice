@@ -11,7 +11,7 @@ import {
   DbConfig,
   ConfigFileChain,
 } from '@c7s/config';
-import { <%= entityName %> } from './infrastructure/models/<%= entityName %>';
+import * as models from './infrastructure/models';
 import { Type } from './Type';
 
 /**
@@ -22,7 +22,7 @@ export class AppModule extends Module {
 
   public async initDiContainer(container: Container, allApplicationModules: Module[]) {
     container.load(buildProviderModule());
-    
+
     const configSource = new ConfigFileChain(
       path.resolve(__dirname, '../config'),
       process.env.<%= envVariableName %> as string,
@@ -47,8 +47,8 @@ export class AppModule extends Module {
     container.bind<Connection>(Type.DbConnection)
       .toConstantValue(await (new components.DbConnectionFactory).create(allApplicationModules));
 
-    container.bind<Repository<<%= entityName %>>>(Type.<%= entityName %>DataRepository)
-      .toConstantValue(getRepository(<%= entityName %>));
+    container.bind<Repository<models.<%= entityName %>>>(Type.<%= entityName %>DataRepository)
+      .toConstantValue(getRepository(models.<%= entityName %>));
   }
 
   public async end(container: Container) {

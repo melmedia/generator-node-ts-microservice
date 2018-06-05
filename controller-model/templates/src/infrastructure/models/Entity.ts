@@ -9,7 +9,6 @@ export enum <%= entityName %>Status {
   Coaching = 'coaching',
 }
 
-
 @Entity()
 export class <%= entityName %> {
   @PrimaryGeneratedColumn()

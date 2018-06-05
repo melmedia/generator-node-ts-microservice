@@ -3,7 +3,7 @@ import { IsDate, IsEmail, IsIn, IsOptional } from 'class-validator';
 import { ErrorMessages } from '../../components/validation/ErrorMessages';
 
 @Exclude()
-export class Update<%= entityName %>Form {
+export class Update<%= entityName %> {
   @Expose()
   public firstName?: string;
 

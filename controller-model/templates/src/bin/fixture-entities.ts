@@ -4,17 +4,17 @@ import { argv } from 'yargs';
 import { Repository } from 'typeorm';
 import { di } from '@c7s/node-ts-framework';
 import { Type } from '../Type';
-import { <%= entityName %>, <%= entityName %>Status } from '../infrastructure/models/<%= entityName %>';
+import * as models from '../infrastructure/models';
 import { app } from '../console';
 
 class Fixture<%= entityName %>s {
   @di.inject(Type.<%= entityName %>DataRepository)
-  protected <%= entityNameLower %>DataRepository!: Repository<<%= entityName %>>;
+  protected <%= entityNameLower %>DataRepository!: Repository<models.<%= entityName %>>;
 
   public async create<%= entityName %>(nutritionistId: number) {
-    const <%= entityNameLower %> = new <%= entityName %>;
+    const <%= entityNameLower %> = new models.<%= entityName %>;
     <%= entityNameLower %>.nutritionistId = nutritionistId;
-    <%= entityNameLower %>.status = <%= entityName %>Status.Eating;
+    <%= entityNameLower %>.status = models.<%= entityName %>Status.Eating;
     await this.<%= entityNameLower %>DataRepository.save(<%= entityNameLower %>);
 
     console.log('<%= entityName %> created');

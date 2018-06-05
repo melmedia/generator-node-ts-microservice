@@ -14,7 +14,7 @@ module.exports = class extends Generator {
     const mapping = [
       ['build.xml'],
       ['environment/supervisor/packageName.prod.conf', `environment/supervisor/${packageName}.prod.conf`],
-      ['environment/supervisor/packageName.prod.conf', `environment/supervisor/${packageName}.qa.conf`],
+      ['environment/supervisor/packageName.qa.conf', `environment/supervisor/${packageName}.qa.conf`],
     ];
 
     const params = {

@@ -8,8 +8,8 @@
     "start": "<%= environmentScriptPath %> node dist/app.js",
     "start-dev": "<%= environmentScriptPath %> node_modules/.bin/nodemon dist/app.js",
     "typeorm-config": "<%= environmentScriptPath %> node dist/bin/db-config.js > ormconfig.json",
-    "migrate": "yarn run typeorm-config && ./node_modules/.bin/typeorm migrations:run",
-    "migrate-undo": "yarn run typeorm-config && ./node_modules/.bin/typeorm migrations:revert",
+    "migrate": "yarn run typeorm-config && ./node_modules/.bin/typeorm migration:run",
+    "migrate-undo": "yarn run typeorm-config && ./node_modules/.bin/typeorm migration:revert",
     "fixture-<%= entityNameLower %>s": "<%= environmentScriptPath %> node dist/bin/fixture-<%= entityNameLower %>s.js",
     "apidoc": "./node_modules/.bin/apidoc -i src/application/controllers -o apidoc",
     "tslint": "./node_modules/.bin/tslint 'src/**/*.ts'"

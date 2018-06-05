@@ -9,7 +9,7 @@ import {
 } from 'class-validator';
 
 @Exclude()
-export class Create<%= entityName %>Form {
+export class Create<%= entityName %> {
   @Expose()
   @IsNotEmpty({ message: ErrorMessages.isNotEmpty() })
   public firstName!: string;

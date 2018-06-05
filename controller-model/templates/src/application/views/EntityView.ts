@@ -1,9 +1,9 @@
 import lodashPick = require('lodash.pick');
-import { <%= entityName %> } from '../../infrastructure/models/<%= entityName %>';
+import * as models from '../../infrastructure/models';
 
 export class <%= entityName %>View {
 
-  public index(<%= entityNameLower %>s: <%= entityName %>[]) {
+  public index(<%= entityNameLower %>s: models.<%= entityName %>[]) {
     return <%= entityNameLower %>s.map((<%= entityNameLower %>) => {
       return lodashPick(
         <%= entityNameLower %>,
@@ -18,7 +18,7 @@ export class <%= entityName %>View {
     });
   }
 
-  public one(<%= entityNameLower %>: <%= entityName %>) {
+  public one(<%= entityNameLower %>: models.<%= entityName %>) {
     return lodashPick(
       <%= entityNameLower %>,
       [
