@@ -1,4 +1,4 @@
-# Replace Me
+# <%= projectTitle %>
 
 ## Requirements
 
@@ -19,12 +19,12 @@ APIDOC generated documentation available at ./apidoc folder.
 Create database:
 ```sh
 psql -c "create user gorod with password '123qwe'" postgres
-psql -c "create database replace_me owner gorod encoding 'UTF8' lc_collate 'ru_RU.UTF-8' LC_CTYPE 'ru_RU.UTF-8' template template0;" postgres
+psql -c "create database <%= databaseName %> owner gorod encoding 'UTF8' lc_collate 'ru_RU.UTF-8' LC_CTYPE 'ru_RU.UTF-8' template template0;" postgres
 ```
 
 Place in /opt/environment.sh:
 ```sh
-export REPLACE_ME_ENV=dev
+export <%= envVariableName %>=dev
 ```
 
 Install dependencies:
@@ -35,19 +35,19 @@ yarn install
 
 Build application:
 ```sh
-yarn run compile
+yarn build
 ```
 
 Run migrations:
 ```sh
-chmod +x bin/environment
-yarn run migrate
+chmod +x <%= environmentScriptPath %>
+yarn migrate
 mkdir runtime/
 ```
 
 Generate documentation:
 ```sh
-yarn run apidoc
+yarn apidoc
 ```
 
 
@@ -55,14 +55,14 @@ yarn run apidoc
 
 In one console run typescript compiler in watch mode:
 ```sh
-yarn run compile-dev
+yarn build-dev
 ```
 
 In another console run nodemon watching compiled files changes:
 ```sh
-yarn run start-dev
+yarn start-dev
 ```
-or `yarn run start` without watch.
+or `yarn start` without watch.
 
 See logs in `runtime` folder.
 
@@ -74,12 +74,12 @@ See logs in `runtime` folder.
 Create database:
 ```sh
 psql -c "create user gorod with password '123qwe'" postgres
-psql -c "create database replace_me owner gorod encoding 'UTF8' lc_collate 'ru_RU.UTF-8' LC_CTYPE 'ru_RU.UTF-8' template template0;" postgres
+psql -c "create database <%= databaseName %> owner gorod encoding 'UTF8' lc_collate 'ru_RU.UTF-8' LC_CTYPE 'ru_RU.UTF-8' template template0;" postgres
 ```
 
 Place in /opt/environment.sh:
 ```sh
-export REPLACE_ME_ENV=dev
+export <%= envVariableName %>=dev
 ```
 
 ### After jenkins deployment

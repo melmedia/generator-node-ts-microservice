@@ -1,8 +1,9 @@
 import * as path from 'path';
 import { Connection, getRepository, Repository } from 'typeorm';
 import { Container } from 'inversify';
+import { buildProviderModule } from 'inversify-binding-decorators';
 import { Logger } from 'log4js';
-import { Module, components } from '@c7s/node-framework';
+import { Module, components } from '@c7s/node-ts-framework';
 import {
   ServerConfig,
   ConfigFactory,
@@ -10,7 +11,7 @@ import {
   DbConfig,
   ConfigFileChain,
 } from '@c7s/config';
-import { Client } from './infrastructure/models/Client';
+import * as models from './infrastructure/models';
 import { Type } from './Type';
 
 /**
@@ -19,10 +20,12 @@ import { Type } from './Type';
  */
 export class AppModule extends Module {
 
-  public async initDiContainer(container: Container) {
+  public async initDiContainer(container: Container, allApplicationModules: Module[]) {
+    container.load(buildProviderModule());
+
     const configSource = new ConfigFileChain(
       path.resolve(__dirname, '../config'),
-      process.env.REPLACE_ME_ENV as string,
+      process.env.<%= envVariableName %> as string,
     );
     const configFactory = new ConfigFactory(configSource);
 
@@ -36,14 +39,20 @@ export class AppModule extends Module {
     const loggerFactory = new components.LoggerFactory;
     container.bind<Logger>(Type.AppLogger)
       .toConstantValue(loggerFactory.create('app'));
+    container.bind<Logger>(Type.DbLogger)
+      .toConstantValue(loggerFactory.create('db'));
     container.bind<Logger>(Type.AccessLogger)
       .toConstantValue(loggerFactory.create('access'));
 
     container.bind<Connection>(Type.DbConnection)
-      .toConstantValue(await (new components.DbConnectionFactory).create([this]));
+      .toConstantValue(await (new components.DbConnectionFactory).create(allApplicationModules));
 
-    container.bind<Repository<Client>>(Type.ClientDataRepository)
-      .toConstantValue(getRepository(Client));
+    container.bind<Repository<models.<%= entityName %>>>(Type.<%= entityName %>DataRepository)
+      .toConstantValue(getRepository(models.<%= entityName %>));
+  }
+
+  public async end(container: Container) {
+    await container.get<Connection>(Type.DbConnection).close();
   }
 
   protected get baseDirectory() {

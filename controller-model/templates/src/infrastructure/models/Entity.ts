@@ -1,6 +1,6 @@
-import { Entity, Column, PrimaryColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-export enum Status {
+export enum <%= entityName %>Status {
   AutoCoaching = 'autoCoaching',
   Survey = 'survey',
   PreEating = 'preEating',
@@ -9,10 +9,9 @@ export enum Status {
   Coaching = 'coaching',
 }
 
-
 @Entity()
-export class Client {
-  @PrimaryColumn()
+export class <%= entityName %> {
+  @PrimaryGeneratedColumn()
   public id!: number;
 
   @Column()
@@ -31,7 +30,7 @@ export class Client {
   public nutritionistId?: number;
 
   @Column()
-  public status!: Status;
+  public status!: <%= entityName %>Status;
 
   @Column()
   public creationTime!: Date;

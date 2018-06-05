@@ -1,5 +1,5 @@
 #!/bin/bash
-# run on node6 deploy node
+# run on node6 jenkins node
 
 set -e
 
@@ -8,11 +8,8 @@ lib_dir=node_modules/deployment
 scriptpath=$(dirname $0)
 cd $scriptpath/../
 
-echo "[deployment] Compile"
-yarn run compile
-
-echo "[deployment] Generating apidoc"
-yarn run apidoc
+echo "[deployment] Install dependencies"
+yarn install
 
 project=$project \
 target_host=$target_host \
@@ -24,4 +21,4 @@ packaging_release_number=$packaging_release_number \
 github_project_url=$github_project_url \
 git_branch=$git_branch \
 build_only=$build_only
-source $lib_dir/bin/build
+source $lib_dir/bin/deploy
