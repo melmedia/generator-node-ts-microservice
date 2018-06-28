@@ -22,7 +22,7 @@ class Fixture<%= entityName %>s {
 
 }
 
-app.init().then(() => {
+app.run(async () => {
   const <%= entityNameLower %>Id: string | undefined = argv.<%= entityNameLower %>Id;
-  (new Fixture<%= entityName %>s).create<%= entityName %>(Number(<%= entityNameLower %>Id));
+  await (new Fixture<%= entityName %>s).create<%= entityName %>(Number(<%= entityNameLower %>Id));
 });
