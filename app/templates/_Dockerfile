@@ -1,0 +1,33 @@
+FROM node:<%= dockerBaseNodejsImageTag %> as build
+
+ENV TZ=/usr/share/zoneinfo/Europe/Moscow
+ENV TYPEORM_CONNECTION=postgres
+ENV TYPEORM_LOGGING=all
+ENV TYPEORM_DATABASE=<%= databaseName %>
+ENV TYPEORM_USERNAME=gorod
+ENV TYPEORM_MIGRATIONS_DIR=src/infrastructure/migrations
+ENV TYPEORM_MIGRATIONS=dist/infrastructure/migrations/*.js
+ENV TYPEORM_ENTITIES=dist/infrastructure/models/*.js
+
+WORKDIR /app
+
+COPY package.json yarn.lock ./
+
+RUN yarn install --pure-lockfile --ignore-optional
+
+COPY tsconfig.json tslint.json nodemon.json ./
+COPY config config/
+COPY src src/
+
+RUN yarn tslint && \
+    yarn build
+
+EXPOSE 3000
+
+
+FROM build as release
+RUN useradd -r -s /bin/bash -d /app gorod
+RUN mkdir -p /app/.yarn /app/.cache/yarn && \
+    chown gorod:gorod /app/.yarn /app/.cache/yarn
+USER gorod
+CMD yarn migrate && exec node dist/app

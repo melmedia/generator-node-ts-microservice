@@ -1,4 +1,4 @@
-import { di } from '@c7s/node-ts-framework';
+import { di } from '@melmedia/node-ts-framework';
 
 export const Type = {
   ... di.Type,

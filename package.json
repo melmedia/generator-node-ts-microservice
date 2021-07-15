@@ -5,19 +5,17 @@
   "main": "app/index.js",
   "files": [
     "app",
-    "controller-model",
-    "deployment-standalone",
-    "deployment-microservice"
+    "controller-model"
   ],
   "devDependencies": {
     "yeoman-assert": "3.1.1"
   },
   "dependencies": {
-    "lodash": "4.17.11",
-    "mkdirp": "0.5.1",
-    "randomstring": "1.1.5",
-    "yeoman-generator": "2.0.4"
+    "lodash": "4.17.21",
+    "mkdirp": "1.0.4",
+    "randomstring": "1.2.1",
+    "yeoman-generator": "5.4.0"
   },
-  "repository": "c7s/generator-node-ts-microservice",
+  "repository": "melmedia/generator-node-ts-microservice",
   "license": "UNLICENSED"
 }

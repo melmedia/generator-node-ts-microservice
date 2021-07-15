@@ -1,7 +1,0 @@
-#!/bin/bash
-
-if [ -f /opt/environment.sh ]; then
-    source /opt/environment.sh
-fi
-
-$*

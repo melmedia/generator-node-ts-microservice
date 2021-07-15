@@ -3,14 +3,16 @@ import { Connection, getRepository, Repository } from 'typeorm';
 import { Container } from 'inversify';
 import { buildProviderModule } from 'inversify-binding-decorators';
 import { Logger } from 'log4js';
-import { Module, components } from '@c7s/node-ts-framework';
+import { Module, LoggerFactory, DbConnectionFactory } from '@melmedia/node-ts-framework';
 import {
   ServerConfig,
   ConfigFactory,
   LogConfig,
   DbConfig,
   ConfigFileChain,
-} from '@c7s/config';
+} from '@melmedia/config';
+import { EnvServiceDiscovery } from '@melmedia/rest-client';
+
 import * as models from './infrastructure/models';
 import { Type } from './Type';
 
@@ -20,12 +22,16 @@ import { Type } from './Type';
  */
 export class AppModule extends Module {
 
+  protected get baseDirectory() {
+    return __dirname;
+  }
+
   public async initDiContainer(container: Container, allApplicationModules: Module[]) {
     container.load(buildProviderModule());
 
     const configSource = new ConfigFileChain(
       path.resolve(__dirname, '../config'),
-      process.env.<%= envVariableName %> as string,
+      process.env.PABLO_ENV as string,
     );
     const configFactory = new ConfigFactory(configSource);
 
@@ -36,7 +42,9 @@ export class AppModule extends Module {
     container.bind<DbConfig>(Type.DbConfig)
       .toConstantValue(await configFactory.create<DbConfig>(DbConfig));
 
-    const loggerFactory = new components.LoggerFactory;
+    container.bind<EnvServiceDiscovery>(Type.ServiceDiscovery).to(EnvServiceDiscovery);
+
+    const loggerFactory = new LoggerFactory;
     container.bind<Logger>(Type.AppLogger)
       .toConstantValue(loggerFactory.create('app'));
     container.bind<Logger>(Type.DbLogger)
@@ -45,7 +53,7 @@ export class AppModule extends Module {
       .toConstantValue(loggerFactory.create('access'));
 
     container.bind<Connection>(Type.DbConnection)
-      .toConstantValue(await (new components.DbConnectionFactory).create(allApplicationModules));
+      .toConstantValue(await (new DbConnectionFactory).create(allApplicationModules));
 
     container.bind<Repository<models.<%= entityName %>>>(Type.<%= entityName %>DataRepository)
       .toConstantValue(getRepository(models.<%= entityName %>));
@@ -53,10 +61,6 @@ export class AppModule extends Module {
 
   public async end(container: Container) {
     await container.get<Connection>(Type.DbConnection).close();
-  }
-
-  protected get baseDirectory() {
-    return __dirname;
   }
 
 }
