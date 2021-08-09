@@ -2,7 +2,7 @@ import { Exclude, Expose } from 'class-transformer';
 import {
   IsBoolean,
   IsEmail,
-  IsOptional
+  IsOptional,
 } from 'class-validator';
 import { ErrorMessages } from '../../components/validation/ErrorMessages';
 
