@@ -1,0 +1,12 @@
+{
+    "delay": 2,
+    "ignore": [
+        "node_modules",
+        "src"
+    ],
+    "watch": [
+        ".",
+        "../config"
+    ],
+    "ext": "js,json"
+}

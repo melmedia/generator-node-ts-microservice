@@ -15,7 +15,6 @@ module.exports = class extends Generator {
     const serverListenPort = this.config.get('serverListenPort');
 
     const copyTemplatesMapping = [
-      ['src/bin/fixture-entities.ts', `src/bin/fixture-${entityNameLower}s.ts`],
       ['src/components/validation/ErrorMessages.ts', `src/components/validation/ErrorMessages.ts`],
       ['src/application/controllers/EntityController.ts', `src/application/controllers/${entityName}Controller.ts`],
       ['src/application/forms/CreateEntity.ts', `src/application/forms/Create${entityName}.ts`],

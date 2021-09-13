@@ -1,12 +1,8 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 export enum <%= entityName %>Status {
-  AutoCoaching = 'autoCoaching',
-  Survey = 'survey',
-  PreEating = 'preEating',
-  Eating = 'eating',
-  PreCoaching = 'preCoaching',
-  Coaching = 'coaching',
+  Active = 'active',
+  Deleted = 'deleted',
 }
 
 @Entity()
@@ -18,16 +14,13 @@ export class <%= entityName %> {
   public email!: string;
 
   @Column()
-  public firstName!: string;
+  public firstName?: string;
 
   @Column()
   public lastName!: string;
 
   @Column()
-  public coachId?: number;
-
-  @Column()
-  public nutritionistId?: number;
+  public isDraft!: boolean;
 
   @Column()
   public status!: <%= entityName %>Status;

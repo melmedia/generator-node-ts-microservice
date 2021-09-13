@@ -1,7 +1,7 @@
 # Yeoman generator node-ts-microservice
 NodeJS Typescript backend REST microservice based on routing-controllers, typeorm, inversify.
 
-Based on [boilerplate](https://github.com/c7s/node-ts-microservice-boilerplate).
+Based on [boilerplate](https://github.com/melmedia/node-ts-microservice-boilerplate).
 
 
 ## Installation
@@ -10,10 +10,11 @@ First, install [Yeoman](http://yeoman.io) and generator-node-ts-microservice usi
 
 ```bash
 npm install -g yo
-npm install -g generator-node-ts-microservice
+cd generator-node-ts-microservice
+npm link
 ```
 
-Then generate your new project:
+Then generate your new project (from empty folder):
 
 ```bash
 yo node-ts-microservice

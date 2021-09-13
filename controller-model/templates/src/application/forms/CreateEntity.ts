@@ -2,10 +2,9 @@ import { Exclude, Expose } from 'class-transformer';
 import { ErrorMessages } from '../../components/validation/ErrorMessages';
 
 import {
-  IsInt,
   IsNotEmpty,
   IsEmail,
-  IsOptional,
+  IsBoolean,
 } from 'class-validator';
 
 @Exclude()
@@ -24,13 +23,7 @@ export class Create<%= entityName %> {
   public email!: string;
 
   @Expose()
-  @IsInt({ message: ErrorMessages.isInt() })
-  @IsOptional()
-  public coachId?: number;
-
-  @Expose()
-  @IsInt({ message: ErrorMessages.isInt() })
-  @IsOptional()
-  public nutritionistId?: number;
+  @IsBoolean()
+  public isDraft!: number;
 
 }

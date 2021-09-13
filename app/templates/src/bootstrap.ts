@@ -2,17 +2,8 @@ import 'reflect-metadata';
 import 'source-map-support/register';
 import * as util from 'util';
 
-// const tsConfig = require('../tsconfig.json');
-// const tsConfigPaths = require('tsconfig-paths');
-
-/* Path mapping init, must be before import app files */
-// tsConfigPaths.register({
-//   baseUrl: __dirname,
-//   paths: tsConfig.compilerOptions.paths,
-// });
-
 function padDatePart(str: number) {
-  return ('0' + str).slice(-2);
+  return (`0${str}`).slice(-2);
 }
 
 function consoleErrorTimestamp(message: any) {
@@ -37,6 +28,6 @@ process.on('uncaughtException', (err) => {
   consoleErrorTimestamp(err);
 });
 
-if (!process.env.<%= envVariableName %>) {
-  throw new Error('Environment variable <%= envVariableName %> is not set');
+if (!process.env.PABLO_ENV) {
+  throw new Error('Environment variable PABLO_ENV is not set');
 }
